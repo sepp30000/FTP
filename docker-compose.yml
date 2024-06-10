@@ -1,0 +1,20 @@
+services:
+  ftpd_server:
+    image: stilliard/pure-ftpd
+    container_name: pure-ftpd
+    ports:
+    # Redirección de puertos
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes: 
+      # Creación del volumen del ftp
+      - "/home/sepp/ftps/ftp:/home/sepp/"
+      # Certificados
+      - "/etc/ssl/private/:/etc/ssl/private/"
+    environment:
+      FTP_USER_NAME: sepp
+      FTP_USER_PASS: mipass
+      FTP_USER_HOME: /home/sepp
+
+    restart: always
+
